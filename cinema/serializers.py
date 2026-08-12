@@ -127,3 +127,10 @@ class OrderSerializer(serializers.ModelSerializer):
         for ticket in tickets:
             Ticket.objects.create(order=order, **ticket)
         return order
+
+
+class OrderListSerializer(OrderSerializer):
+    tickets = TicketListSerializer(
+        many=True,
+        read_only=True,
+    )
